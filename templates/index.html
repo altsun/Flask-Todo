@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Flask Todo</title>
+{% endblock head %}
+
+{% block body %}
+<div class="content container">
+    <h1 class="text-center">Flask Todo</h1>
+
+    <!-- Table container -->
+    <div class="table-reponsive">
+        <!-- If there is no tasks -->
+        {% if tasks|length < 1 %}
+            <h4 class="text-center">You currently have no tasks!</h4>
+        {% else %}
+            <!-- Show the table -->
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Task</th>
+                        <th>Added</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in tasks %}
+                        <tr>
+                            <td>{{ task.content }}</td>
+                            <td>{{ task.date_created.date() }}</td>
+                            <td>
+                                <!-- Delete Task, trigger the Modal -->
+                                <a href="" class="text-danger" data-toggle="modal" data-target="#delete-{{task.id}}">Delete</a>
+
+                                <!-- Modal (popup) -->
+                                <div class="modal fade" id="delete-{{task.id}}" role="dialog">
+                                    <div class="modal-dialog">
+                                
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete Task?</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Are you sure deleting this task: <span class="font-weight-bold">{{task.content}}</span>?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <a href="/delete/{{task.id}}" class="btn btn-danger">Delete</a>
+                                            </div>
+                                        </div>
+                                
+                                    </div>
+                                </div>
+
+                                <br>
+
+                                <!-- Update Task -->
+                                <a href="/update/{{task.id}}">Update</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <!-- Form to add task -->
+    <form action="/" method="POST" class="form-inline justify-content-center">
+        <input type="text" class="form-control" id="content" name="content" placeholder="Insert your task here...">
+        <input type="submit" class="btn btn-success" value="Add Task">
+    </form>
+
+    
+
+</div>
+{% endblock body %}
