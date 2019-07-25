@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block head %}
+<<<<<<< HEAD
 <title>Flask Todo</title>
+=======
+<title>Task Master</title>
+>>>>>>> 16cacb52afba237ad234ebd5fe088d71f8f073c3
 {% endblock head %}
 
 {% block body %}
 <div class="content container">
+<<<<<<< HEAD
     <h1 class="text-center">Flask Todo</h1>
 
     <!-- Table container -->
@@ -15,6 +20,14 @@
             <h4 class="text-center">You currently have no tasks!</h4>
         {% else %}
             <!-- Show the table -->
+=======
+    <h1 class="text-center">Task Master</h1>
+
+    <div class="table-reponsive">
+        {% if tasks|length < 1 %}
+            <h4 class="text-center">You currently have no tasks!</h4>
+        {% else %}
+>>>>>>> 16cacb52afba237ad234ebd5fe088d71f8f073c3
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -29,6 +42,7 @@
                             <td>{{ task.content }}</td>
                             <td>{{ task.date_created.date() }}</td>
                             <td>
+<<<<<<< HEAD
                                 <!-- Delete Task, trigger the Modal -->
                                 <a href="" class="text-danger" data-toggle="modal" data-target="#delete-{{task.id}}">Delete</a>
 
@@ -57,6 +71,10 @@
                                 <br>
 
                                 <!-- Update Task -->
+=======
+                                <a href="/delete/{{task.id}}">Delete</a>
+                                <br>
+>>>>>>> 16cacb52afba237ad234ebd5fe088d71f8f073c3
                                 <a href="/update/{{task.id}}">Update</a>
                             </td>
                         </tr>
@@ -66,13 +84,19 @@
         {% endif %}
     </div>
 
+<<<<<<< HEAD
     <!-- Form to add task -->
+=======
+>>>>>>> 16cacb52afba237ad234ebd5fe088d71f8f073c3
     <form action="/" method="POST" class="form-inline justify-content-center">
         <input type="text" class="form-control" id="content" name="content" placeholder="Insert your task here...">
         <input type="submit" class="btn btn-success" value="Add Task">
     </form>
+<<<<<<< HEAD
 
     
 
+=======
+>>>>>>> 16cacb52afba237ad234ebd5fe088d71f8f073c3
 </div>
 {% endblock body %}
